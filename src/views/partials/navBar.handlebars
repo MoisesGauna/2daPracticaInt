@@ -1,0 +1,16 @@
+<div class="banner-productos">
+  <div class="navbar-short">
+    <img src="/images/.jpg" alt="" class="logo">
+    <ul>
+      {{#if user}}
+        {{#if user.admin }}
+          <li><a href="/realtimeproducts">Panel de Administrador</a></li>
+        {{/if}}
+      {{/if}}
+      <li><a href="/productos">Productos</a></li>
+      <li><a href="/cart">Carrito</a></li>
+      <li><a href="/chat">Contacto</a></li>
+      <li><a href="/logOut">LogOut</a></li>
+    </ul>
+  </div>
+</div>

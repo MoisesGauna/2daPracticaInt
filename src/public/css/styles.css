@@ -1,0 +1,553 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background: #373e44;
+}
+
+#nnavbarNavDropdown {
+    flex-grow: 0 !important;
+}
+
+.navbar-expand-lg .navbar-collapse {
+
+    flex-direction: row-reverse;
+}
+
+.navbar {
+    width: 100%;
+}
+
+#list-products {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    /* Add a gap of 30px between elements */
+    margin-bottom: 50px;
+}
+
+.container {
+    position: relative;
+}
+
+.cards-container {
+    display: flex;
+    padding: 10px;
+}
+
+.card-img-top {
+    height: 250px !important;
+}
+
+#formProduct {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
+    width: 1000px;
+    background: #24303c;
+    padding: 30px;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 60px;
+    border-radius: 4px;
+    font-family: 'calibri';
+    color: white;
+    box-shadow: 7px 13px 37px #000;
+}
+
+.title-add-product {
+    align-items: center;
+    width: 900px;
+}
+
+.name-desc {
+    display: flex;
+    flex-direction: row;
+}
+
+.name-product {
+    width: 250px;
+    margin: 15px;
+}
+
+.desc-product {
+    width: 650px;
+    margin: 15px;
+}
+
+.stock-code-price {
+    display: flex;
+    flex-direction: row;
+}
+
+.stock-product {
+    margin: 15px;
+}
+
+.code-product {
+    margin: 15px;
+}
+
+.price-product {
+    margin: 15px;
+}
+
+.category-product {
+    margin: 15px;
+}
+
+.url-product {
+    width: 850px;
+}
+
+.add-quantity {
+    display: flex;
+    flex-direction: row;
+}
+
+#formProducth4 {
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.quantity-input-field {
+    width: 50px;
+    padding-left: 10px;
+    height: 48px;
+    border-radius: 6px;
+    font-size: 20px;
+}
+
+.quantity-input {
+    display: flex;
+    flex-direction: row;
+    padding-left: 10px;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.quantity-button {
+    width: 20px;
+    margin: 5px;
+}
+
+.controls {
+    width: 100%;
+    background: #24303c;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    border: 1px solid #1f53c5;
+    font-family: 'calibri';
+    font-size: 18px;
+    color: white;
+}
+
+#formProduct p {
+    height: 40px;
+    text-align: center;
+    font-size: 18px;
+    line-height: 40px;
+}
+
+#formProduct h2 {
+    height: 40px;
+    text-align: center;
+    font-size: 45px;
+    line-height: 40px;
+}
+
+#formProduct a {
+    color: white;
+    text-decoration: none;
+}
+
+#formProduct a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+#formProduct .botons {
+    width: 100%;
+    background: #1f53c5;
+    border: none;
+    padding: 12px;
+    color: white;
+    margin: 16px 0;
+    font-size: 16px;
+}
+
+.titulo-products h1{
+    color: aqua;
+}
+
+/* --------------productDetail-------- */
+.product-detail {
+    display: flex;
+    flex-direction: row;
+    width: auto;
+}
+
+
+.imag-detail {
+    width: 350px;
+    height: 350px;
+}
+/* --------------productDetail-------- */
+
+/* --------------home-------- */
+.page {
+    display: flex;
+    flex-direction: row;
+}
+
+.prev-page {
+    padding: 10px;
+
+}
+
+.count-page {
+    padding: 10px;
+}
+
+.next-page {
+    padding: 10px;
+}
+/* --------------home-------- */
+/* -----------------------------newhome---------------------------------------- */
+.banner {
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
+        url(/images/baner1Fitness.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+.navbar-home {
+    width: 85%;
+    margin: auto;
+    padding: 35px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    width: 500px;
+    cursor: pointer;
+}
+
+.navbar-home ul li {
+    list-style: none;
+    display: inline-block;
+    margin: 0 20px;
+    position: relative;
+}
+
+.navbar-home ul li a {
+    text-decoration: none;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.navbar-home ul li::after {
+    content: "";
+    height: 3px;
+    width: 0;
+    background: #009688;
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    transition: 0.5s;
+}
+
+.navbar-home ul li:hover::after {
+    width: 100%;
+}
+
+.content {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    color: #fff;
+}
+
+.content h1 {
+    font-size: 70px;
+    margin-top: 80px;
+}
+
+.content a {
+    text-decoration: none;
+}
+
+.content p {
+    margin: 20px auto;
+    font-weight: 100;
+    line-height: 25px;
+}
+
+.login-btn {
+    width: 200px;
+    padding: 15px 0;
+    text-align: center;
+    margin: 20px 10px;
+    border-radius: 25px;
+    font-weight: bold;
+    border: 2px solid #009688;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.signup-btn {
+    width: 200px;
+    padding: 15px 0;
+    text-align: center;
+    margin: 20px 10px;
+    border-radius: 25px;
+    font-weight: bold;
+    border: 2px solid #009688;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.cover {
+    background: #009688;
+    height: 100%;
+    width: 0%;
+    border-radius: 25px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    transition: 0.5s;
+}
+
+button:hover span {
+    width: 100%;
+}
+
+button:hover {
+    border: none;
+}
+/* -----------------------------newhome---------------------------------------- */
+/* --------------filtros-------- */
+.saludo-bienvenida h2{
+    color:aqua;
+}
+.saludo-bienvenida h4{
+    color:aqua;
+}
+
+.filters {
+    display: flex;
+    justify-content: end;
+    width: 100%;
+}
+
+.offcanvas.offcanvas-end {
+    top: 94px;
+    border-radius: 1rem;
+    width: 250px;
+}
+/* --------------filtros-------- */
+/* --------------login-------- */
+.banner-productos {
+    width: 100%;
+    height: 100px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url(/images/baner1Fitness.jpg);
+    background-size: cover;
+}
+
+.login {
+    width: 50vh;
+    padding-top: 10vh;
+}
+
+.alert-danger {
+    margin: 20px;
+    color: #842029;
+    width: 200px;
+    background-color: #f8d7da;
+    border-color: #f5c2c7;
+}
+/* --------------login-------- */
+/* --------------footer------- */
+footer {
+    background-color: black;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    height: 70px;
+    position: absolute;
+    bottom: 0;
+    padding-top: 20px;
+    z-index: 100;
+}
+
+footer div h3 {
+    color: #fff;
+    font-weight: bold;
+    font-size: 25px;
+}
+/* --------------register-------- */
+.mb-3 {
+    margin-bottom: 1rem !important;
+    width: 40vh;
+}
+
+#login-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.register {
+    width: 50vh;
+    padding-top: 45px;
+}
+
+.btn-primary{
+    margin: 10px;
+}
+
+.btn-primary a {
+    color: white !important;
+    text-decoration: none;
+}
+/* --------------register-------- */
+/* --------------navBar short-------- */
+.navbar-short {
+    padding-top: 20px;
+    height: 100px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar-short ul li {
+    list-style: none;
+    display: inline-block;
+    margin: 0 20px;
+    position: relative;
+}
+
+.navbar-short ul li a {
+    text-decoration: none;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.navbar-short ul li::after {
+    content: "";
+    height: 3px;
+    width: 0;
+    background: #009688;
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    transition: 0.5s;
+}
+
+.navbar-short ul li:hover::after {
+    width: 100%;
+}
+/* --------------navBar short-------- */
+/* --------------button github-------- */
+.btn-git{
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.css-1j7yzl5 {
+    background-color: #374f73;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    margin-top: 16px;
+    border-radius: 6px;
+    width: 196px;
+    height: 52px;
+
+}
+.leafygreen-ui-1c87knv {
+    appearance: none;
+    padding: 0px;
+    margin: 0px;
+    border: 1px solid rgb(10, 91, 121);
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    transition: all 150ms ease-in-out 0s;
+    position: relative;
+    text-decoration: none;
+    cursor: pointer;
+    z-index: 0;
+    font-family: "Euclid Circular A", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: rgb(0, 30, 43);
+    font-size: 16px;
+    line-height: 28px;
+    transform: translateY(1px);
+    font-weight: 500;
+}
+.leafygreen-ui-v038xi {
+    overflow: hidden;
+    position: absolute;
+    inset: 0px;
+    border-radius: 5px;
+}
+.leafygreen-ui-16tr4y {
+    display: grid;
+    grid-auto-flow: column;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    user-select: none;
+    z-index: 0;
+    padding: 0px 11px;
+    gap: 6px;
+}
+.css-dw6a9n {
+    display: flex;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+    height: auto;
+}
+/* --------------button github-------- */
+
+
+.btn-reg-log{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
