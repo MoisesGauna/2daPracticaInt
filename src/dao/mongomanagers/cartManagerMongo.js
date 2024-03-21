@@ -15,8 +15,27 @@ class CartManager {
     };
 
 
-    getCartById = async (cartId) => {
+    createCart = async () => {
+		try{
+			const newCart = {
+				products: [],
+			} 
+			const createdCart = await cartModel.create(newCart)
+			if(!createdCart){
+				throw new Error('Cart creation failed.')
+			}
+			return createdCart
+		} catch(error){
+			if(error == 'Cart creation failed.'){
+				throw error
+			} else {
+				throw new Error(error)
+			}
+		}
+	}
 
+
+    getCartById = async (cartId) => {
         try {
             const cart = await cartModel.findById(cartId).lean()
             return cart;
@@ -96,7 +115,7 @@ class CartManager {
         }
     };
 
-    removeallProductFromCart = async(cartId) =>{
+    removeallProductFromCart = async (cartId) => {
         const cart = await cartModel.findById(cartId)
         cart.products = [];
         await cart.save();

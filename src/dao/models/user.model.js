@@ -21,12 +21,16 @@ const userSchema = new mongoose.Schema({
     },
     admin: {
         type: Boolean,
+        default: false
     },
     rol: {  
         type: String, 
         enum: ['admin', 'user'], 
         default: 'user' 
     },
+    cartId:{
+        type: String
+    }
     
 },
 {

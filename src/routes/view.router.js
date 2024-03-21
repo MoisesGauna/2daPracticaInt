@@ -4,18 +4,17 @@ import CartManager from '../dao/mongomanagers/cartManagerMongo.js';
 import { productsModel } from '../dao/models/products.model.js';
 import { requireAuth, isAdmin } from "../config/authMiddleware.js"
 import express from 'express';
-
 import path from 'path';
+import userManager from "../dao/mongomanagers/userManagerMongo.js";
+import { setUserInLocals } from "../config/authMiddleware.js";
+
+const usmanager = new userManager();
 
 const cmanager = new CartManager();
 
 const router = Router()
 
-// Middleware para pasar el objeto user a las vistas
-const setUserInLocals = (req, res, next) => {
-    res.locals.user = req.session.user || null;
-    next();
-};
+
 
 // Usar el middleware en todas las rutas
 router.use(setUserInLocals);
@@ -73,7 +72,7 @@ router.get("/productos", requireAuth, async (req, res) => {
 
         products.page = products.page;
         products.totalPages = products.totalPages;
-        console.log(products)
+        
         res.render('productos', products);
     } catch (error) {
         console.log('Error al leer los productos', error);
@@ -86,7 +85,10 @@ router.get("/realtimeproducts", requireAuth, isAdmin, (req, res) => {
 })
 
 router.get("/cart", requireAuth, async (req, res) => {
-    const productsInCart = await cmanager.getCartById("65c28522c1483aaada1fb25c")
+    const logUser = req.session.user;
+    const user= await usmanager.getUsers(logUser.username)
+    const cartId = user.cartId
+    const productsInCart = await cmanager.getCartById(cartId)
     const productList = Object.values(productsInCart.products)
     res.render("partials/cart", { productList })
 })

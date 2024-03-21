@@ -1,8 +1,11 @@
 import passport from "passport";
-import local from  'passport-local'
+import local from 'passport-local'
 import { userModel } from "../dao/models/user.model.js";
 import { createHash, isValidatePassword } from "./bcrypt.js";
-const  LocalStrategy = local.Strategy;
+import CartManager from "../dao/mongomanagers/cartManagerMongo.js"
+const LocalStrategy = local.Strategy;
+const cmanager = new CartManager();
+
 
 const initializePassport = () => {
     passport.use('register', new LocalStrategy(
@@ -13,8 +16,19 @@ const initializePassport = () => {
                 if (userExist) {
                     return done(null, false, 'Username already exists');
                 }
-    
-                let newUser = await userModel.create({ username, password: createHash(password), name, lastname, tel });
+                const newCart = await cmanager.createCart()
+                let newUser = await userModel.create({ 
+                    username,
+                    password: createHash(password),
+                    name,
+                    lastname,
+                    tel,
+                    cartId: newCart._id
+                });
+
+                if (username === 'adminCoder@coder.com' && password === 'adminCod3r123') {
+                    newUser.rol = 'admin'
+                }
                 return done(null, newUser);
             } catch (error) {
                 return done('Error creating user: ' + error);
@@ -29,23 +43,23 @@ const initializePassport = () => {
                 console.log("User doesn't exist");
                 return done(null, false);
             }
-    
+
             // Validar la contraseña de forma asincrónica
             const isValidPassword = await isValidatePassword(user, password);
             if (!isValidPassword) {
                 console.log("Invalid password");
                 return done(null, false);
             }
-    
+
             return done(null, user);
         } catch (error) {
             return done(error);
         }
     }));
-    
 
-    passport.serializeUser((user,done)=>{
-        done(null,user._id)
+
+    passport.serializeUser((user, done) => {
+        done(null, user._id)
     })
     passport.deserializeUser((id, done) => {
         userModel.findById(id)
@@ -56,7 +70,7 @@ const initializePassport = () => {
                 done(error);
             });
     });
-    
+
 }
 
 export default initializePassport;

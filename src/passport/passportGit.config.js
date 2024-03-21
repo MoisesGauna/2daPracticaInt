@@ -2,9 +2,10 @@ import passport from "passport";
 import github from "passport-github2";
 import userManager from "../dao/mongomanagers/userManagerMongo.js"
 import { userModel } from "../dao/models/user.model.js";
+import CartManager from "../dao/mongomanagers/cartManagerMongo.js";
 
 const usmanager = new userManager()
-
+const cmanager = new CartManager()
 
 export const initPassportGit =()=>{
     passport.use("github", new github.Strategy(
@@ -20,12 +21,14 @@ export const initPassportGit =()=>{
                     const emailgit = profile.id + profile.username + "@users.noreply.github.com"
                     console.log(emailgit)
                     let user = await usmanager.getUsers(emailgit);
-                    user = await userModel.create({ username: emailgit, name: name, email:emailgit });
+                    const newCart = await cmanager.createCart()
+                    user = await userModel.create({ username: emailgit, name: name, email:emailgit, cartId: newCart._id });
                     return done(null, user)
                 } else {
                     let user = await usmanager.getUsers(email);
                     if (!user) {
-                        user = await userModel.create({ username: email, name: name, email:email });
+                        const newCart = await cmanager.createCart()
+                        user = await userModel.create({ username: email, name: name, email:email, cartId: newCart._id});
                     }
                     return done(null, user)
                 }
@@ -33,18 +36,6 @@ export const initPassportGit =()=>{
             }catch (error) {
                 return done(error)
             }
-        // async(accessToken, refreshToken, profile, done)=>{
-        //     try {
-        //         let{name,email} =  profile._json;
-        //         let user = await usmanager.getUsers(email);
-        //         if(!user){
-        //             user=await userModel.create({username: email , name : name});
-        //         }
-        //         return done(null,user)
-        //     } catch (error) {
-        //         return done(error)
-        //     }
-        // }
     }
     ))
 }//fin initPassportGit

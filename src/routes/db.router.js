@@ -110,8 +110,10 @@ router.post('/login', (req, res, next) => {
 
 router.delete('/empty-cart', requireAuth, async (req, res) => {
     try {
-        // Lógica para vaciar completamente el carrito
-        const cartId = "65c28522c1483aaada1fb25c"; // ID del carrito a vaciar
+        const logUser = req.session.user;
+        const user= await usmanager.getUsers(logUser.username)
+        const cartId = user.cartId
+
 
         const cart = await cmanager.removeallProductFromCart(cartId);
 
@@ -125,8 +127,10 @@ router.delete('/empty-cart', requireAuth, async (req, res) => {
 router.delete('/delete-to-cart', requireAuth, async (req, res) => {
     try {
         const { productId } = req.body;
-
-        const removeCartProduct = await cmanager.removeProductFromCart("65c28522c1483aaada1fb25c", productId);
+        const logUser = req.session.user;
+        const user= await usmanager.getUsers(logUser.username)
+        const cartId = user.cartId
+        const removeCartProduct = await cmanager.removeProductFromCart(cartId, productId);
 
         // En lugar de enviar un script con alert y redirección, puedes enviar un mensaje JSON de éxito
         res.json({ success: true, message: 'Producto eliminado del carrito' });
@@ -139,13 +143,16 @@ router.delete('/delete-to-cart', requireAuth, async (req, res) => {
 router.post('/add-to-cart', requireAuth, async (req, res) => {
     try {
         const { productId, quantity } = req.body; // Obtener la cantidad del cuerpo de la solicitud
+        const logUser = req.session.user;
+        const user= await usmanager.getUsers(logUser.username)
+        const cartId = user.cartId
 
-        const cart = await cmanager.getCartById("65c28522c1483aaada1fb25c");
+        const cart = await cmanager.getCartById(cartId);
 
         if (productId) {
             const id = productId;
             const productDetails = await pmanager.getProductById(productId);
-            const addedProduct = await cmanager.addProductInCart("65c28522c1483aaada1fb25c", productDetails, id, quantity); // Pasar la cantidad al método addProductInCart
+            const addedProduct = await cmanager.addProductInCart(cartId, productDetails, id, quantity); // Pasar la cantidad al método addProductInCart
         }
 
         res.json({ success: true, message: 'Producto agregado al carrito' });

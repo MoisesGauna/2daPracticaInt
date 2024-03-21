@@ -12,7 +12,7 @@ export default class userManager {
         if (existingUser) {
             throw new Error('Email already in use');
         }
-        const newUser = await userModel.create({ username,name, lastname,tel, email, password });
+        const newUser = await userModel.create({ username,name, lastname,tel, email, password});
         return newUser;
     }
 
@@ -23,7 +23,4 @@ export default class userManager {
         }
         return user;
     }
-
-
-
 }
