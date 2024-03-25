@@ -23,13 +23,14 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    rol: {  
+    rol:{  
         type: String, 
         enum: ['admin', 'user'], 
         default: 'user' 
     },
     cartId:{
-        type: String
+        type: mongoose.Types.ObjectId,
+        ref: "carts",
     }
     
 },
@@ -38,5 +39,10 @@ const userSchema = new mongoose.Schema({
     strict:false
 }
 );
+
+userSchema.pre('find', function(next){
+    this.populate('carts._id');
+    next();
+});
 
 export const userModel = mongoose.model('User', userSchema, userCollection);

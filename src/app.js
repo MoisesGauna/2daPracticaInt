@@ -17,6 +17,9 @@ import passport from "passport"
 import initializePassport from "./passport/passport.config.js"
 import {router as sessionsRouter} from './routes/sessions.router.js'
 import { initPassportGit } from "./passport/passportGit.config.js"
+import dotenv from  "dotenv";
+
+dotenv.config();
 
 const app=express()
 app.use(express.static(__dirname+"/public"))
@@ -24,11 +27,11 @@ app.use(express.static(__dirname+"/public"))
 app.use(cookieParser("CoderCookie"))
 app.use(session({
     store: MongoStore.create({
-        mongoUrl:"mongodb+srv://moisesagauna:admin123@cluster0.tkrlcyj.mongodb.net/?retryWrites=true&w=majority",
+        mongoUrl:process.env.MONGODB_URI,
         mongoOptions:{useNewUrlParser:true,useUnifiedTopology:true},
         ttl:3*60*60
     }),
-    secret:"SecretKey",
+    secret:process.env.SECRET_KEY,
     resave: true,
     saveUninitialized:true
 }))
@@ -57,7 +60,7 @@ app.get('/getSession',(req,res)=>{
 })
 
 app.get('/setCookies', (req, res) => {
-    res.cookie('CoderCookie', {user: 'moises@gmail.com'}, {}).send('cookie creada');
+    res.cookie('CoderCookie', {user: process.env.EMAIL}, {}).send('cookie creada');
 });
 
 app.get('/getCookies', (req, res) => {

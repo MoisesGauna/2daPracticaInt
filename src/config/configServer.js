@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
-const URI="mongodb+srv://moisesagauna:admin123@cluster0.tkrlcyj.mongodb.net/?retryWrites=true&w=majority"
- 
+
+import dotenv from  'dotenv';
+
+dotenv.config();
+
+const URI=  process.env.MONGODB_URI;
 
 const connectToDB = () => {
     try {

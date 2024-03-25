@@ -21,8 +21,10 @@ export const initPassportGit =()=>{
                     const emailgit = profile.id + profile.username + "@users.noreply.github.com"
                     console.log(emailgit)
                     let user = await usmanager.getUsers(emailgit);
-                    const newCart = await cmanager.createCart()
-                    user = await userModel.create({ username: emailgit, name: name, email:emailgit, cartId: newCart._id });
+                    if (!user){
+                        const newCart = await cmanager.createCart()
+                        const user = await userModel.create({ username: emailgit, name: name, email:emailgit, cartId: newCart._id });
+                    }
                     return done(null, user)
                 } else {
                     let user = await usmanager.getUsers(email);
